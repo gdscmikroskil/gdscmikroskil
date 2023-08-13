@@ -1,0 +1,19 @@
+{
+  "name": "gdsc-mikroskil",
+  "version": "0.1.0",
+  "description": "",
+  "private": true,
+  "scripts": {},
+  "license": "MIT",
+  "keywords": [],
+  "homepage": "https://github.com/gdscmikroskil/gdsc-mikroskil#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gdscmikroskil/gdsc-mikroskil.git"
+  },
+  "bugs": {
+    "url": "https://github.com/gdscmikroskil/gdsc-mikroskil/issues"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
