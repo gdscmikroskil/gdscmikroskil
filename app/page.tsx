@@ -1,6 +1,6 @@
 export default function RootPage() {
   return (
-    <h1 className="text-3xl font-bold underline text-center">
+    <h1 className="text-center text-3xl font-bold underline">
       GDSC Universitas Mikroskil
     </h1>
   );
