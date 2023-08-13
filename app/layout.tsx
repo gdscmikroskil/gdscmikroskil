@@ -10,7 +10,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={cn(fontSans.variable, fontMono.variable)}>
+      <body className={cn('font-sans', fontSans.variable, fontMono.variable)}>
         {children}
       </body>
     </html>
