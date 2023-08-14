@@ -1,6 +1,6 @@
 export interface AzureADAuthToken {
   value: string;
-  type: string;
+  expires: number;
 }
 
 export interface AzureADUserProfile {

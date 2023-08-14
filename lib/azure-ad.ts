@@ -41,17 +41,18 @@ class AzureAD {
 
     return {
       value: responseJson.access_token,
-      type: responseJson.token_type,
+      // Convert seconds to milliseconds
+      expires: responseJson.expires_in * 1000,
     };
   }
 
   // Get user profile using access token
-  async getUserProfile(token: AzureADAuthToken): Promise<AzureADUserProfile> {
+  async getUserProfile(accessToken: string): Promise<AzureADUserProfile> {
     const url = buildEndpoint(this.graphBaseUrl, '/me');
 
     const response = await fetch(url, {
       headers: {
-        Authorization: `${token.type} ${token.value}`,
+        Authorization: `Bearer ${accessToken}`,
       },
     });
     const responseJson = await response.json();
