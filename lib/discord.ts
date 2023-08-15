@@ -8,7 +8,7 @@ class Discord {
 
   // Create an authorization URL for user to start authentication process
   // https://discord.com/developers/docs/topics/oauth2#authorization-code-grant
-  getOAuthAuthorizeUrl() {
+  getAuthorizationUrl() {
     return createEndpoint(this.baseUrl, '/oauth2/authorize', {
       client_id: env.DISCORD_CLIENT_ID,
       redirect_uri: this.redirectUrl,
@@ -19,7 +19,7 @@ class Discord {
 
   // Exchange authorization code for access token
   // https://discord.com/developers/docs/topics/oauth2#authorization-code-grant-access-token-exchange-example
-  async getAccessToken(code: string): Promise<string> {
+  async getAccessTokenByCode(code: string): Promise<string> {
     const endpoint = createEndpoint(this.baseUrl, '/oauth2/token');
 
     const urlencoded = new URLSearchParams();
