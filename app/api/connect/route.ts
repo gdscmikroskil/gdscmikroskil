@@ -37,16 +37,15 @@ export async function GET(request: Request) {
 
       // If user already join guild then attach role to user
       if (isAlreadyJoinGuild) {
-        await discord.attachRoleToUser(
-          discordUserProfile.id,
-          env.DISCORD_ROLE_ID
-        );
+        for (const role of env.DISCORD_ROLE_IDS) {
+          await discord.attachRoleToUser(discordUserProfile.id, role);
+        }
       } else {
         // If user not join guild then add user to guild with role and nickname
         await discord.addUserToGuild({
           accessToken: discordToken,
           userId: discordUserProfile.id,
-          roles: [env.DISCORD_ROLE_ID],
+          roles: env.DISCORD_ROLE_IDS,
           nickname: azureADUserProfile.givenName,
         });
       }
