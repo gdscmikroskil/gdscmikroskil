@@ -1,5 +1,5 @@
 import { env } from '~/lib/env.mjs';
-import { buildEndpoint } from '~/lib/utils';
+import { createEndpoint } from '~/lib/utils';
 import { AzureADAuthToken, AzureADUserProfile } from '~/types/azure-ad';
 
 class AzureAD {
@@ -9,7 +9,7 @@ class AzureAD {
 
   // Create an authorization URL for user to start authentication process
   getAuthorizationUrl() {
-    return buildEndpoint(this.authBaseUrl, '/authorize', {
+    return createEndpoint(this.authBaseUrl, '/authorize', {
       client_id: env.AZURE_AD_CLIENT_ID,
       response_type: 'code',
       response_mode: 'query',
@@ -21,9 +21,9 @@ class AzureAD {
 
   // Exchange authorization code for access token
   async getAccessTokenByCode(code: string): Promise<AzureADAuthToken> {
-    const url = buildEndpoint(this.authBaseUrl, '/token');
+    const endpoint = createEndpoint(this.authBaseUrl, '/token');
 
-    const response = await fetch(url, {
+    const response = await fetch(endpoint, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -48,9 +48,9 @@ class AzureAD {
 
   // Get user profile using access token
   async getUserProfile(accessToken: string): Promise<AzureADUserProfile> {
-    const url = buildEndpoint(this.graphBaseUrl, '/me');
+    const endpoint = createEndpoint(this.graphBaseUrl, '/me');
 
-    const response = await fetch(url, {
+    const response = await fetch(endpoint, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
