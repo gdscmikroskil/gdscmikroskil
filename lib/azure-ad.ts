@@ -39,6 +39,11 @@ class AzureAD {
         code,
       }),
     });
+
+    if (!response.ok) {
+      throw new Error('Failed to exchange azure ad access token');
+    }
+
     const responseJson = await response.json();
 
     return {
@@ -58,6 +63,11 @@ class AzureAD {
         Authorization: `Bearer ${accessToken}`,
       },
     });
+
+    if (!response.ok) {
+      throw new Error('Failed to get azure ad user profile');
+    }
+
     const responseJson = await response.json();
 
     return {

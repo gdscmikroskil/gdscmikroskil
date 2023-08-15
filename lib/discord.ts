@@ -37,6 +37,10 @@ class Discord {
       },
     });
 
+    if (!response.ok) {
+      throw new Error('Failed to exchange discord access token');
+    }
+
     const responseJson = await response.json();
     return responseJson.access_token;
   }
@@ -49,12 +53,16 @@ class Discord {
       `/guilds/${env.DISCORD_GUILD_ID}/members/${userId}/roles/${role}`
     );
 
-    await fetch(endpoint, {
+    const response = await fetch(endpoint, {
       method: 'PUT',
       headers: {
         Authorization: `Bot ${env.DISCORD_BOT_TOKEN}`,
       },
     });
+
+    if (response.status !== 204) {
+      throw new Error('Failed to attach discord role to user');
+    }
   }
 
   // Get user profile using access token
@@ -68,7 +76,17 @@ class Discord {
       },
     });
 
-    return response.json();
+    if (!response.ok) {
+      throw new Error('Failed to get authenticated discord user profile');
+    }
+
+    const responseJson = await response.json();
+
+    return {
+      id: responseJson.id,
+      username: responseJson.username,
+      email: responseJson.email,
+    };
   }
 
   // Get guild member by user id
@@ -89,6 +107,10 @@ class Discord {
 
     if (response.status === 404) {
       return null;
+    }
+
+    if (!response.ok) {
+      throw new Error('Failed to get discord guild member by user id');
     }
 
     const responseJson = await response.json();
@@ -118,7 +140,7 @@ class Discord {
       `/guilds/${env.DISCORD_GUILD_ID}/members/${userId}`
     );
 
-    await fetch(endpoint, {
+    const response = await fetch(endpoint, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -130,6 +152,10 @@ class Discord {
         nick: nickname,
       }),
     });
+
+    if (!response.ok) {
+      throw new Error('Failed to add user to discord guild');
+    }
   }
 }
 
