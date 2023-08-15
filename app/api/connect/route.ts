@@ -21,9 +21,6 @@ export async function GET(request: Request) {
       return redirect(discord.getOAuthAuthorizeUrl().toString());
     }
 
-    if (!existingAzureADToken)
-      return redirect(azureAD.getAuthorizationUrl().toString());
-
     const azureADUserProfile = await azureAD.getUserProfile(
       existingAzureADToken.value
     );
@@ -38,19 +35,21 @@ export async function GET(request: Request) {
 
     cookieStore.delete(AZURE_AD_TOKEN_COOKIE_NAME);
 
-    if (!isAlreadyJoinGuild) {
-      await discord.addUserToGuild({
-        accessToken: discordToken,
-        userId: discordUserProfile.id,
-        roles: [env.DISCORD_ROLE_ID],
-        nickname: azureADUserProfile.givenName,
-      });
+    if (isAlreadyJoinGuild) {
+      await discord.attachRoleToUser(
+        discordUserProfile.id,
+        env.DISCORD_ROLE_ID
+      );
       return redirect(discordGuildUrl);
     }
 
-    await discord.attachRoleToUser(discordUserProfile.id, env.DISCORD_ROLE_ID);
-
-    redirect(discordGuildUrl);
+    await discord.addUserToGuild({
+      accessToken: discordToken,
+      userId: discordUserProfile.id,
+      roles: [env.DISCORD_ROLE_ID],
+      nickname: azureADUserProfile.givenName,
+    });
+    return redirect(discordGuildUrl);
   }
 
   if (!code) {
