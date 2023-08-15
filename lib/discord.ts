@@ -92,7 +92,12 @@ class Discord {
     }
 
     const responseJson = await response.json();
-    return responseJson.user;
+
+    return {
+      id: responseJson.user.id,
+      username: responseJson.user.username,
+      email: responseJson.user.email,
+    };
   }
 
   // Add user to guild
