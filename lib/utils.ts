@@ -5,7 +5,7 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function buildEndpoint(
+export function createEndpoint(
   baseUrl: string,
   path: string,
   searchParams: Record<string, string> = {}
