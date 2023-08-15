@@ -8,6 +8,7 @@ class AzureAD {
   private redirectUrl = `${env.BASE_URL}/api/connect`;
 
   // Create an authorization URL for user to start authentication process
+  // https://learn.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-auth-code-flow#request-an-authorization-code
   getAuthorizationUrl() {
     return createEndpoint(this.authBaseUrl, '/authorize', {
       client_id: env.AZURE_AD_CLIENT_ID,
@@ -20,6 +21,7 @@ class AzureAD {
   }
 
   // Exchange authorization code for access token
+  // https://learn.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-auth-code-flow#redeem-a-code-for-an-access-token
   async getAccessTokenByCode(code: string): Promise<AzureADAuthToken> {
     const endpoint = createEndpoint(this.authBaseUrl, '/token');
 
@@ -47,6 +49,7 @@ class AzureAD {
   }
 
   // Get user profile using access token
+  // https://learn.microsoft.com/en-us/graph/api/user-get?view=graph-rest-1.0&tabs=http
   async getUserProfile(accessToken: string): Promise<AzureADUserProfile> {
     const endpoint = createEndpoint(this.graphBaseUrl, '/me');
 
