@@ -4,6 +4,7 @@ import { redirect } from 'next/navigation';
 import { azureAD } from '~/lib/azure-ad';
 import { discord } from '~/lib/discord';
 import { env } from '~/lib/env.mjs';
+import { compactName } from '~/lib/utils';
 
 const AZURE_AD_TOKEN_COOKIE_NAME = 'azure_ad_token';
 const DISCORD_GUILD_URL = `https://discord.com/channels/${env.DISCORD_GUILD_ID}/@home`;
@@ -47,7 +48,7 @@ export async function GET(request: Request) {
           accessToken: discordToken,
           userId: discordUserProfile.id,
           roles: [env.DISCORD_ROLE_ID],
-          nickname: azureADUserProfile.givenName,
+          nickname: compactName(azureADUserProfile.displayName),
         });
       }
     } catch (error) {
