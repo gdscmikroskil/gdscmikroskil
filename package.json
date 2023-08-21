@@ -43,13 +43,20 @@
     "vitest": "^0.34.1"
   },
   "dependencies": {
+    "@sanity/image-url": "^1.0.2",
+    "@sanity/orderable-document-list": "^1.1.0",
+    "@sanity/vision": "3",
     "@t3-oss/env-nextjs": "^0.6.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "lucide-react": "^0.263.1",
     "next": "^13.4.13",
+    "next-sanity": "5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-wrap-balancer": "^1.1.0",
+    "sanity": "3",
+    "styled-components": "5.2",
     "tailwind-merge": "^1.14.0",
     "tailwindcss-animate": "^1.0.6",
     "zod": "^3.21.4"

@@ -1,6 +1,5 @@
 import { Metadata } from 'next';
 
-import { Header } from '~/components/header';
 import { fontMono, fontSans } from '~/lib/fonts';
 import { cn } from '~/lib/utils';
 
@@ -8,6 +7,13 @@ import '~/app/style.css';
 
 export const metadata: Metadata = {
   title: 'GDSC Mikroskil',
+  description: 'Google Developer Student Clubs Universitas Mikroskil',
+  openGraph: {
+    type: 'website',
+    title: 'GDSC Mikroskil',
+    description: 'Google Developer Student Clubs Universitas Mikroskil',
+  },
+  keywords: ['gdsc', 'gdsc mikroskil'],
 };
 
 export default function RootLayout({
@@ -18,13 +24,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={cn(
-          'dark mx-auto flex max-w-xl flex-col px-4 font-sans',
-          fontSans.variable,
-          fontMono.variable
-        )}
+        className={cn('dark font-sans', fontSans.variable, fontMono.variable)}
       >
-        <Header />
         {children}
       </body>
     </html>
