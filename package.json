@@ -44,6 +44,7 @@
   },
   "dependencies": {
     "@sanity/image-url": "^1.0.2",
+    "@sanity/orderable-document-list": "^1.1.0",
     "@sanity/vision": "3",
     "@t3-oss/env-nextjs": "^0.6.0",
     "class-variance-authority": "^0.7.0",

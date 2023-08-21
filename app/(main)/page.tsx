@@ -5,39 +5,21 @@ import { Alert, AlertDescription, AlertTitle } from '~/components/ui/alert';
 import { getErrorDetail } from '~/lib/errors';
 import { client } from '~/lib/sanity/client';
 import { urlForImage } from '~/lib/sanity/image';
-import { CategoryContent, LinkContent } from '~/types/content';
+import { CategoryWithLinksContent } from '~/types/content';
 
 interface MainPageProps {
   searchParams: { error?: string };
 }
 
-type GroupLinkByCategory = {
-  category: CategoryContent;
-  links: LinkContent[];
-};
-
 export default async function MainPage({ searchParams }: MainPageProps) {
   const error = getErrorDetail(searchParams.error);
 
-  const links = await client.fetch<LinkContent[]>(`
-    *[_type == "link"] {
+  const categories = await client.fetch<CategoryWithLinksContent[]>(`
+    *[_type == "category"]|order(orderRank){
       ...,
-      category->
+      "links": *[ _type == "link" && category._ref == ^._id ]|order(orderRank)
     }
   `);
-
-  const groupLinkByCategory = links.reduce(
-    (acc: GroupLinkByCategory[], link) => {
-      const exist = acc.find((item) => item.category._id === link.category._id);
-      if (exist) {
-        exist.links.push(link);
-        return acc;
-      }
-      acc.push({ category: link.category, links: [link] });
-      return acc;
-    },
-    []
-  );
 
   return (
     <main className="mb-12">
@@ -50,14 +32,14 @@ export default async function MainPage({ searchParams }: MainPageProps) {
       )}
 
       <Card.Root>
-        {groupLinkByCategory.map((group) => {
+        {categories.map((category) => {
           return (
             <Card.Group
-              key={group.category._id}
-              title={group.category.title}
-              icon={<SVGFetcher url={urlForImage(group.category.icon).url()} />}
+              key={category._id}
+              title={category.title}
+              icon={<SVGFetcher url={urlForImage(category.icon).url()} />}
             >
-              {group.links.map((link) => (
+              {category.links.map((link) => (
                 <Card.Link
                   key={link._id}
                   title={link.title}
