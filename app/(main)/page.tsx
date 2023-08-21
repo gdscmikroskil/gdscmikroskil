@@ -33,6 +33,8 @@ export default async function MainPage({ searchParams }: MainPageProps) {
 
       <Card.Root>
         {categories.map((category) => {
+          if (category.links.length === 0) return null;
+
           return (
             <Card.Group
               key={category._id}
