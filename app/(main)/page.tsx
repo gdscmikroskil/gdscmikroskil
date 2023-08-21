@@ -7,6 +7,8 @@ import { client } from '~/lib/sanity/client';
 import { urlForImage } from '~/lib/sanity/image';
 import { CategoryWithLinksContent } from '~/types/content';
 
+export const dynamic = 'force-static';
+
 interface MainPageProps {
   searchParams: { error?: string };
 }
