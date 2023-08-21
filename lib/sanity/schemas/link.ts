@@ -37,4 +37,10 @@ export default defineType({
     }),
     orderRankField({ type: 'category' }),
   ],
+  preview: {
+    select: {
+      title: 'title',
+      subtitle: 'category.title',
+    },
+  },
 });
