@@ -6,7 +6,12 @@ import gdscLogo from '~/assets/gdsc-logo.png';
 export function Header() {
   return (
     <header className="flex flex-col items-center py-12 text-center md:py-14">
-      <Image src={gdscLogo} alt="" className="mb-2 h-8 w-auto md:h-10" />
+      <Image
+        src={gdscLogo}
+        alt=""
+        className="h-14 w-auto md:h-16"
+        placeholder="blur"
+      />
       <div className="flex flex-col justify-center">
         <h1 className="text-xl font-bold md:text-2xl">
           Google Developer Student Clubs
