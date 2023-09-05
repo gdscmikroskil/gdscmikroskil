@@ -4,6 +4,8 @@ import {
 } from '@sanity/orderable-document-list';
 import { defineField, defineType } from 'sanity';
 
+import { isUniqueAcrossAllDocuments } from '~/lib/sanity/helpers';
+
 export default defineType({
   name: 'category',
   title: 'Category',
@@ -14,6 +16,16 @@ export default defineType({
       name: 'title',
       title: 'Title',
       type: 'string',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'slug',
+      title: 'Slug',
+      type: 'slug',
+      options: {
+        source: 'title',
+        isUnique: isUniqueAcrossAllDocuments,
+      },
       validation: (Rule) => Rule.required(),
     }),
     defineField({
