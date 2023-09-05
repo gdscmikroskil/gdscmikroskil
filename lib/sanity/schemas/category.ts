@@ -25,6 +25,25 @@ export default defineType({
       },
       validation: (Rule) => Rule.required(),
     }),
+    defineField({
+      name: 'active',
+      title: 'Active',
+      type: 'boolean',
+      initialValue: true,
+    }),
     orderRankField({ type: 'category' }),
   ],
+  preview: {
+    select: {
+      title: 'title',
+      status: 'active',
+    },
+    prepare(selection) {
+      const { title, status } = selection;
+      return {
+        // 🟢 = active 🔴 = inactive
+        title: `${status ? '🟢' : '🔴'} ${title}`,
+      };
+    },
+  },
 });

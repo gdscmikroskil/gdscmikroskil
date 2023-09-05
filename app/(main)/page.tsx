@@ -17,9 +17,9 @@ export default async function MainPage({ searchParams }: MainPageProps) {
   const error = getErrorDetail(searchParams.error);
 
   const categories = await client.fetch<CategoryWithLinksContent[]>(`
-    *[_type == "category"]|order(orderRank){
+    *[ _type == "category" && active == true ]|order(orderRank){
       ...,
-      "links": *[ _type == "link" && category._ref == ^._id ]|order(orderRank)
+      "links": *[ _type == "link" && category._ref == ^._id && active == true ]|order(orderRank)
     }
   `);
 
