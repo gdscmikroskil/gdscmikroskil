@@ -17,9 +17,9 @@ export default async function MainPage({ searchParams }: MainPageProps) {
   const error = getErrorDetail(searchParams.error);
 
   const categories = await client.fetch<CategoryWithLinksContent[]>(`
-    *[_type == "category"]|order(orderRank){
+    *[ _type == "category" && active == true ]|order(orderRank){
       ...,
-      "links": *[ _type == "link" && category._ref == ^._id ]|order(orderRank)
+      "links": *[ _type == "link" && category._ref == ^._id && active == true ]|order(orderRank)
     }
   `);
 
@@ -41,6 +41,7 @@ export default async function MainPage({ searchParams }: MainPageProps) {
             <Card.Group
               key={category._id}
               title={category.title}
+              slug={category.slug.current}
               icon={<SVGFetcher url={urlForImage(category.icon).url()} />}
             >
               {category.links.map((link) => (

@@ -1,4 +1,4 @@
-import { AlertCircleIcon, LucideProps } from 'lucide-react';
+import { AlertCircleIcon, LinkIcon, LucideProps } from 'lucide-react';
 
 export const Icons = {
   Discord: ({
@@ -31,4 +31,5 @@ export const Icons = {
     );
   },
   Alert: AlertCircleIcon,
+  Link: LinkIcon,
 };

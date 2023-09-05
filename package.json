@@ -43,6 +43,7 @@
     "vitest": "^0.34.1"
   },
   "dependencies": {
+    "@radix-ui/react-slot": "^1.0.2",
     "@sanity/image-url": "^1.0.2",
     "@sanity/orderable-document-list": "^1.1.0",
     "@sanity/vision": "3",
