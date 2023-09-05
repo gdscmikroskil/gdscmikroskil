@@ -14,6 +14,10 @@ export type CategoryContent = {
   _id: string;
   icon: Image;
   title: string;
+  slug: {
+    _type: 'slug';
+    current: string;
+  };
   _type: 'category';
   _rev: string;
   _updatedAt: string;
