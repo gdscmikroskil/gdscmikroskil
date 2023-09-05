@@ -37,12 +37,14 @@ export default defineType({
     select: {
       title: 'title',
       status: 'active',
+      icon: 'icon',
     },
     prepare(selection) {
-      const { title, status } = selection;
+      const { title, status, icon } = selection;
       return {
         // 🟢 = active 🔴 = inactive
         title: `${status ? '🟢' : '🔴'} ${title}`,
+        media: icon,
       };
     },
   },
