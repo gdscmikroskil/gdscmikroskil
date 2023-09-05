@@ -33,4 +33,17 @@ export default defineType({
     }),
     orderRankField({ type: 'category' }),
   ],
+  preview: {
+    select: {
+      title: 'title',
+      status: 'active',
+    },
+    prepare(selection) {
+      const { title, status } = selection;
+      return {
+        // 🟢 = active 🔴 = inactive
+        title: `${status ? '🟢' : '🔴'} ${title}`,
+      };
+    },
+  },
 });

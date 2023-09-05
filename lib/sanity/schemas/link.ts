@@ -47,6 +47,15 @@ export default defineType({
     select: {
       title: 'title',
       subtitle: 'category.title',
+      status: 'active',
+    },
+    prepare(selection) {
+      const { title, subtitle, status } = selection;
+      return {
+        // 🟢 = active 🔴 = inactive
+        title: `${status ? '🟢' : '🔴'} ${title}`,
+        subtitle: subtitle,
+      };
     },
   },
 });
