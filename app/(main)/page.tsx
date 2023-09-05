@@ -41,6 +41,7 @@ export default async function MainPage({ searchParams }: MainPageProps) {
             <Card.Group
               key={category._id}
               title={category.title}
+              slug={category.slug.current}
               icon={<SVGFetcher url={urlForImage(category.icon).url()} />}
             >
               {category.links.map((link) => (
