@@ -35,7 +35,13 @@ export default defineType({
       to: { type: 'category' },
       validation: (Rule) => Rule.required(),
     }),
-    orderRankField({ type: 'category' }),
+    defineField({
+      name: 'active',
+      title: 'Active',
+      type: 'boolean',
+      initialValue: true,
+    }),
+    orderRankField({ type: 'link' }),
   ],
   preview: {
     select: {

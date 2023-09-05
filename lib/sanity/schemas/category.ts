@@ -25,6 +25,12 @@ export default defineType({
       },
       validation: (Rule) => Rule.required(),
     }),
+    defineField({
+      name: 'active',
+      title: 'Active',
+      type: 'boolean',
+      initialValue: true,
+    }),
     orderRankField({ type: 'category' }),
   ],
 });
