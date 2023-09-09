@@ -8,7 +8,7 @@ export default function MainLayout({
   return (
     <>
       <Header />
-      <div className="mx-auto h-[99999px] max-w-xl px-3">{children}</div>
+      <div className="mx-auto max-w-xl px-3">{children}</div>
     </>
   );
 }
