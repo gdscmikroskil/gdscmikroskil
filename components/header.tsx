@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Balancer from 'react-wrap-balancer';
 
 import gdscLogo from '~/assets/gdsc-logo.png';
+import { ThemeToggle } from '~/components/theme-toggle';
 
 export function Header() {
   return (
@@ -22,6 +23,7 @@ export function Header() {
           Universitas Mikroskil
         </p>
       </div>
+      <ThemeToggle />
     </header>
   );
 }
