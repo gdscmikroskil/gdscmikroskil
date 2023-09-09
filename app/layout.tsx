@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 
+import { Provider } from '~/app/provider';
 import { fontMono, fontSans } from '~/lib/fonts';
 import { cn } from '~/lib/utils';
 
@@ -23,10 +24,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body
-        className={cn('dark font-sans', fontSans.variable, fontMono.variable)}
-      >
-        {children}
+      <body className={cn('font-sans', fontSans.variable, fontMono.variable)}>
+        <Provider>{children}</Provider>
       </body>
     </html>
   );
