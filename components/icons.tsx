@@ -5,6 +5,7 @@ import {
   LucideProps,
   MoonIcon,
   SunIcon,
+  Undo2Icon,
 } from 'lucide-react';
 
 export const Icons = {
@@ -42,4 +43,5 @@ export const Icons = {
   LightTheme: SunIcon,
   DarkTheme: MoonIcon,
   SystemTheme: Laptop2Icon,
+  Undo: Undo2Icon,
 };
