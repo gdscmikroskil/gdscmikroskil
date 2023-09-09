@@ -1,5 +1,5 @@
+import { Footer } from '~/components/footer';
 import { Header } from '~/components/header';
-import { cn } from '~/lib/utils';
 
 export default function MainLayout({
   children,
@@ -7,9 +7,12 @@ export default function MainLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className={cn('mx-auto flex max-w-xl flex-col px-4')}>
+    <div className="flex h-full flex-col justify-stretch">
       <Header />
-      {children}
+      <div className="flex-1">
+        <div className="mx-auto max-w-xl px-3">{children}</div>
+      </div>
+      <Footer />
     </div>
   );
 }

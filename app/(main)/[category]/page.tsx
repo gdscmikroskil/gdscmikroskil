@@ -1,7 +1,10 @@
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
 import { Card } from '~/components/card';
+import { Icons } from '~/components/icons';
 import { SVGFetcher } from '~/components/svg-fetcher';
+import { Button } from '~/components/ui/button';
 import { client } from '~/lib/sanity/client';
 import { urlForImage } from '~/lib/sanity/image';
 import { CategoryWithLinksContent } from '~/types/content';
@@ -27,6 +30,13 @@ export default async function MainPage({ params }: MainPageProps) {
           key={category._id}
           title={category.title}
           icon={<SVGFetcher url={urlForImage(category.icon).url()} />}
+          rightContent={
+            <Button asChild size="icon" variant="ghost" className="h-8 w-8">
+              <Link href="/">
+                <Icons.Undo size={16} />
+              </Link>
+            </Button>
+          }
         >
           {category.links.map((link) => (
             <Card.Link
