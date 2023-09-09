@@ -20,7 +20,7 @@ export function ThemeToggle() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="sm" className="p-2">
+        <Button variant="outline" size="sm" className="p-2">
           <Icons.LightTheme
             size={20}
             className="rotate-0 scale-100 transition-transform duration-700 dark:-rotate-90 dark:scale-0"

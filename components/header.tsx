@@ -8,22 +8,26 @@ import { ThemeToggle } from '~/components/theme-toggle';
 
 export function Header() {
   return (
-    <header className="flex flex-col items-center py-12 text-center md:py-14">
-      <Image
-        src={gdscLogo}
-        alt=""
-        className="h-14 w-auto md:h-16"
-        placeholder="blur"
-      />
-      <div className="flex flex-col justify-center">
-        <h1 className="text-xl font-bold md:text-2xl">
-          <Balancer>Google Developer Student Clubs</Balancer>
-        </h1>
-        <p className="text-base text-muted-foreground md:text-lg">
-          Universitas Mikroskil
-        </p>
+    <header className="sticky top-0 z-50 mb-4 bg-background">
+      <div className=" mx-auto flex max-w-xl items-center justify-between border-b px-3 py-4">
+        <div className="flex items-center gap-1">
+          <Image
+            src={gdscLogo}
+            alt=""
+            className="h-10 w-auto md:h-12"
+            placeholder="blur"
+          />
+          <h1 className="text-xs md:text-sm">
+            <span className="block font-semibold">
+              <Balancer>Google Developer Student Clubs</Balancer>
+            </span>
+            <span className="block text-muted-foreground">
+              Universitas Mikroskil
+            </span>
+          </h1>
+        </div>
+        <ThemeToggle />
       </div>
-      <ThemeToggle />
     </header>
   );
 }
