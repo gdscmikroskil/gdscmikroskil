@@ -8,7 +8,11 @@ import { Button } from '~/components/ui/button';
 import { getErrorDetail } from '~/lib/errors';
 import { client } from '~/lib/sanity/client';
 import { urlForImage } from '~/lib/sanity/image';
-import { CategoryWithLinksContent } from '~/types/content';
+import {
+  CategoryWithLinksContent,
+  LinkContent,
+  LinkWithGroupContent,
+} from '~/types/content';
 
 export const dynamic = 'force-static';
 
@@ -22,7 +26,10 @@ export default async function MainPage({ searchParams }: MainPageProps) {
   const categories = await client.fetch<CategoryWithLinksContent[]>(`
     *[ _type == "category" && active == true ]|order(orderRank){
       ...,
-      "links": *[ _type == "link" && category._ref == ^._id && active == true ]|order(orderRank)
+      "links": *[ _type == "link" && category._ref == ^._id && active == true ]|order(orderRank){
+        ...,
+        group->
+      }
     }
   `);
 
@@ -40,6 +47,35 @@ export default async function MainPage({ searchParams }: MainPageProps) {
         {categories.map((category) => {
           if (category.links.length === 0) return null;
 
+          const groups = new Map<
+            string,
+            {
+              title: string;
+              description: string;
+              links: LinkWithGroupContent[];
+            }
+          >();
+          const links = category.links.reduce<LinkContent[]>((acc, link) => {
+            if (!link.group) {
+              acc.push(link);
+              return acc;
+            }
+
+            const existingGroup = groups.get(link.group._id);
+
+            if (existingGroup === undefined) {
+              groups.set(link.group._id, {
+                title: link.group.title,
+                description: link.group.description,
+                links: [link],
+              });
+              return acc;
+            }
+
+            existingGroup.links.push(link);
+            return acc;
+          }, []);
+
           return (
             <Card.Section
               key={category._id}
@@ -53,7 +89,17 @@ export default async function MainPage({ searchParams }: MainPageProps) {
                 </Button>
               }
             >
-              {category.links.map((link) => (
+              {Array.from(groups).map(([groupId, group]) => {
+                return (
+                  <Card.Group
+                    key={groupId}
+                    links={group.links}
+                    title={group.title}
+                    subtitle={group.description}
+                  />
+                );
+              })}
+              {links.map((link) => (
                 <Card.Link
                   key={link._id}
                   title={link.title}
