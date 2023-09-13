@@ -26,7 +26,7 @@ export default async function MainPage({ params }: MainPageProps) {
   return (
     <main className="mb-12">
       <Card.Root>
-        <Card.Group
+        <Card.Section
           key={category._id}
           title={category.title}
           icon={<SVGFetcher url={urlForImage(category.icon).url()} />}
@@ -46,7 +46,7 @@ export default async function MainPage({ params }: MainPageProps) {
               href={link.url}
             />
           ))}
-        </Card.Group>
+        </Card.Section>
       </Card.Root>
     </main>
   );

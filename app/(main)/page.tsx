@@ -41,7 +41,7 @@ export default async function MainPage({ searchParams }: MainPageProps) {
           if (category.links.length === 0) return null;
 
           return (
-            <Card.Group
+            <Card.Section
               key={category._id}
               title={category.title}
               icon={<SVGFetcher url={urlForImage(category.icon).url()} />}
@@ -61,7 +61,7 @@ export default async function MainPage({ searchParams }: MainPageProps) {
                   href={link.url}
                 />
               ))}
-            </Card.Group>
+            </Card.Section>
           );
         })}
       </Card.Root>
