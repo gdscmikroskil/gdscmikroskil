@@ -157,6 +157,36 @@ class Discord {
       throw new Error('Failed to add user to discord guild');
     }
   }
+
+  // Modify Guild Member
+  // https://discord.com/developers/docs/resources/guild#modify-guild-member
+  async modifyGuildMember({
+    userId,
+    nickname,
+  }: {
+    userId: string;
+    nickname?: string;
+  }) {
+    const endpoint = createEndpoint(
+      this.baseUrl,
+      `/guilds/${env.DISCORD_GUILD_ID}/members/${userId}`
+    );
+
+    const response = await fetch(endpoint, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bot ${env.DISCORD_BOT_TOKEN}`,
+      },
+      body: JSON.stringify({
+        nick: nickname,
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to modify guild member');
+    }
+  }
 }
 
 export const discord = new Discord();
