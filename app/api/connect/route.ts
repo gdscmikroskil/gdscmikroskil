@@ -36,8 +36,14 @@ export async function GET(request: Request) {
         .getGuildMemberByUserId(discordUserProfile.id)
         .then(Boolean);
 
-      // If user already join guild then attach role to user
+      const newNickname = compactName(azureADUserProfile.displayName);
+
+      // If user already join guild then change user nickname and attach role to user
       if (isAlreadyJoinGuild) {
+        await discord.modifyGuildMember({
+          userId: discordUserProfile.id,
+          nickname: newNickname,
+        });
         await discord.attachRoleToUser(
           discordUserProfile.id,
           env.DISCORD_ROLE_ID
@@ -48,7 +54,7 @@ export async function GET(request: Request) {
           accessToken: discordToken,
           userId: discordUserProfile.id,
           roles: [env.DISCORD_ROLE_ID],
-          nickname: compactName(azureADUserProfile.displayName),
+          nickname: newNickname,
         });
       }
     } catch (error) {

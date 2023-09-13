@@ -33,6 +33,12 @@ export default defineConfig({
               S,
               context,
             }),
+            orderableDocumentListDeskItem({
+              type: 'group',
+              title: 'Groups',
+              S,
+              context,
+            }),
           ]);
       },
     }),
