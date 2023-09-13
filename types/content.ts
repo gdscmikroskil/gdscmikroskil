@@ -24,8 +24,21 @@ export type CategoryContent = {
   _createdAt: string;
 };
 
+export type GroupContent = {
+  _id: string;
+  title: string;
+  description: string;
+  _type: 'group';
+  _updatedAt: string;
+  _createdAt: string;
+};
+
+export type LinkWithGroupContent = LinkContent & {
+  group: GroupContent | null;
+};
+
 export type CategoryWithLinksContent = CategoryContent & {
-  links: LinkContent[];
+  links: LinkWithGroupContent[];
 };
 
 type Reference = {
