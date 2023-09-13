@@ -50,6 +50,12 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'group',
+      title: 'Group',
+      type: 'reference',
+      to: { type: 'group' },
+    }),
+    defineField({
       name: 'active',
       title: 'Active',
       type: 'boolean',
