@@ -25,8 +25,22 @@ export default defineType({
     defineField({
       name: 'url',
       title: 'URL',
-      type: 'url',
-      validation: (Rule) => Rule.required(),
+      type: 'string',
+      validation: (Rule) =>
+        Rule.required().custom((value) => {
+          try {
+            const url = new URL(value!);
+
+            const allowedProtocols = ['http:', 'https:', 'action:'];
+            if (!allowedProtocols.includes(url.protocol)) {
+              throw new Error('Protocol is not allowed');
+            }
+
+            return true;
+          } catch (error) {
+            return 'URL field can be a valid url (https://...) or an action (action:...)';
+          }
+        }),
     }),
     defineField({
       name: 'category',
