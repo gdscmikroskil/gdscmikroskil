@@ -44,6 +44,7 @@ export function CardGroup({ title, subtitle, links }: CardGroupProps) {
                     <Button
                       asChild
                       key={link._id}
+                      variant={link.variant}
                       className="w-full text-white"
                     >
                       <Link href={link.url} target="_blank">
