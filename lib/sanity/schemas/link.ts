@@ -47,6 +47,7 @@ export default defineType({
       title: 'Variant',
       type: 'string',
       initialValue: 'default',
+      description: 'Variants will only be used on links that have groups',
       options: {
         list: [
           { title: 'Default', value: 'default' },
