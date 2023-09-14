@@ -43,6 +43,23 @@ export default defineType({
         }),
     }),
     defineField({
+      name: 'variant',
+      title: 'Variant',
+      type: 'string',
+      initialValue: 'default',
+      description: 'Variants will only be used on links that have groups',
+      options: {
+        list: [
+          { title: 'Default', value: 'default' },
+          { title: 'Secondary', value: 'secondary' },
+          { title: 'Outline', value: 'outline' },
+          { title: 'Ghost', value: 'ghost' },
+          { title: 'Link', value: 'link' },
+          { title: 'Destructive', value: 'destructive' },
+        ],
+      },
+    }),
+    defineField({
       name: 'category',
       title: 'Category',
       type: 'reference',

@@ -41,8 +41,15 @@ export function CardGroup({ title, subtitle, links }: CardGroupProps) {
               <div className="w-full space-y-2">
                 {links.map((link) => {
                   return (
-                    <Button key={link._id} className="w-full text-white">
-                      <Link href={link.url}>{link.title}</Link>
+                    <Button
+                      asChild
+                      key={link._id}
+                      variant={link.variant}
+                      className="w-full text-white"
+                    >
+                      <Link href={link.url} target="_blank">
+                        {link.title}
+                      </Link>
                     </Button>
                   );
                 })}
