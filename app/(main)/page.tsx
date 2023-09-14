@@ -14,8 +14,6 @@ import {
   LinkWithGroupContent,
 } from '~/types/content';
 
-export const dynamic = 'force-static';
-
 interface MainPageProps {
   searchParams: { error?: string };
 }
