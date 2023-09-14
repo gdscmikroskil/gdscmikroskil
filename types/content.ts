@@ -1,9 +1,14 @@
+import { VariantProps } from 'class-variance-authority';
+
+import { buttonVariants } from '~/components/ui/button';
+
 export type LinkContent = {
   _id: string;
   title: string;
   url: string;
   category: Reference;
   description: string;
+  variant: VariantProps<typeof buttonVariants>['variant'];
   _type: 'link';
   _rev: string;
   _createdAt: string;
