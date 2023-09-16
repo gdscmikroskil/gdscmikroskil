@@ -96,10 +96,10 @@ export function QRCodeGenerator({ links }: QRCodeGeneratorProps) {
                               })}
                             />
                             <div>
-                              <p className="line-clamp-1 break-all">
+                              <p className="line-clamp-1 break-all text-sm md:text-base">
                                 {link.title}
                               </p>
-                              <p className="line-clamp-1 break-all text-muted-foreground">
+                              <p className="line-clamp-1 break-all text-xs text-muted-foreground md:text-sm">
                                 {link.url}
                               </p>
                             </div>
