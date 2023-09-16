@@ -1,11 +1,14 @@
 import {
+  ActivityIcon,
   AlertCircleIcon,
   CheckIcon,
   ChevronsUpDownIcon,
   Laptop2Icon,
   LinkIcon,
   LucideProps,
+  MenuIcon,
   MoonIcon,
+  QrCodeIcon,
   SunIcon,
   Undo2Icon,
 } from 'lucide-react';
@@ -48,4 +51,7 @@ export const Icons = {
   Undo: Undo2Icon,
   Check: CheckIcon,
   ChevronsUpDown: ChevronsUpDownIcon,
+  Menu: MenuIcon,
+  QRCode: QrCodeIcon,
+  Studio: ActivityIcon,
 };

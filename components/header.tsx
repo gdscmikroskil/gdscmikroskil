@@ -1,10 +1,22 @@
 import * as React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 import Balancer from 'react-wrap-balancer';
 
 import gdscLogo from '~/assets/gdsc-logo.png';
+import { Icons } from '~/components/icons';
 import { ThemeToggle } from '~/components/theme-toggle';
+import { Button } from '~/components/ui/button';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '~/components/ui/dropdown-menu';
 
 export function Header() {
   return (
@@ -26,7 +38,36 @@ export function Header() {
             </span>
           </h1>
         </div>
-        <ThemeToggle />
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="outline" size="sm" className="p-2">
+              <Icons.Menu size={20} />
+              <span className="sr-only">Open menu</span>
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end" className="w-44">
+            <DropdownMenuLabel>Menu</DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuGroup>
+              <DropdownMenuItem asChild>
+                <Link href="/studio">
+                  <Icons.Studio className="mr-2 h-4 w-4" />
+                  <span>Studio</span>
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link href="/qrcode">
+                  <Icons.QRCode className="mr-2 h-4 w-4" />
+                  <span>QRCode</span>
+                </Link>
+              </DropdownMenuItem>
+            </DropdownMenuGroup>
+            <DropdownMenuSeparator />
+            <DropdownMenuGroup>
+              <ThemeToggle />
+            </DropdownMenuGroup>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
     </header>
   );
