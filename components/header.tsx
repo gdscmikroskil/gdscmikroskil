@@ -22,7 +22,7 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 mb-4 bg-background">
       <div className="mx-auto flex max-w-xl items-center justify-between gap-2 border-b px-3 py-4">
-        <div className="flex items-center gap-1">
+        <Link href="/" className="flex items-center gap-1">
           <Image
             src={gdscLogo}
             alt=""
@@ -37,7 +37,7 @@ export function Header() {
               Universitas Mikroskil
             </span>
           </h1>
-        </div>
+        </Link>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" size="sm" className="p-2">
