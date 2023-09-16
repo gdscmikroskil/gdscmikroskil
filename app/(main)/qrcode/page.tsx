@@ -4,7 +4,7 @@ import { LinkContent } from '~/types/content';
 
 export default async function QRCodePage() {
   const links = await client.fetch<LinkContent[]>(`
-    *[ _type == "link" ]|order(orderRank)
+    *[ _type == "link" && active == true ]|order(orderRank)
   `);
 
   return <QRCodeGenerator links={links} />;
