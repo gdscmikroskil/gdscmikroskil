@@ -1,5 +1,7 @@
 import {
   AlertCircleIcon,
+  CheckIcon,
+  ChevronsUpDownIcon,
   Laptop2Icon,
   LinkIcon,
   LucideProps,
@@ -44,4 +46,6 @@ export const Icons = {
   DarkTheme: MoonIcon,
   SystemTheme: Laptop2Icon,
   Undo: Undo2Icon,
+  Check: CheckIcon,
+  ChevronsUpDown: ChevronsUpDownIcon,
 };
