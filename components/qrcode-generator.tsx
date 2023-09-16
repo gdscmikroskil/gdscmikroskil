@@ -19,6 +19,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '~/components/ui/popover';
+import { ScrollArea, ScrollAreaViewport } from '~/components/ui/scroll-area';
 import { cn } from '~/lib/utils';
 import { LinkContent } from '~/types/content';
 
@@ -77,31 +78,37 @@ export function QRCodeGenerator({ links }: QRCodeGeneratorProps) {
               <Command filter={handleFilter}>
                 <CommandInput placeholder="Search link..." />
                 <CommandEmpty>No link found.</CommandEmpty>
-                <CommandGroup>
-                  {links.map((link) => {
-                    const isChecked = value === link._id;
+                <ScrollArea>
+                  <ScrollAreaViewport className="max-h-[200px] md:max-h-[300px]">
+                    <CommandGroup>
+                      {links.map((link) => {
+                        const isChecked = value === link._id;
 
-                    return (
-                      <CommandItem
-                        key={link._id}
-                        value={link._id}
-                        onSelect={handleSelect}
-                      >
-                        <Icons.Check
-                          className={cn('mr-3 h-4 w-4 shrink-0 opacity-0', {
-                            'opacity-100': isChecked,
-                          })}
-                        />
-                        <div>
-                          <p className="line-clamp-1 break-all">{link.title}</p>
-                          <p className="line-clamp-1 break-all text-muted-foreground">
-                            {link.url}
-                          </p>
-                        </div>
-                      </CommandItem>
-                    );
-                  })}
-                </CommandGroup>
+                        return (
+                          <CommandItem
+                            key={link._id}
+                            value={link._id}
+                            onSelect={handleSelect}
+                          >
+                            <Icons.Check
+                              className={cn('mr-3 h-4 w-4 shrink-0 opacity-0', {
+                                'opacity-100': isChecked,
+                              })}
+                            />
+                            <div>
+                              <p className="line-clamp-1 break-all">
+                                {link.title}
+                              </p>
+                              <p className="line-clamp-1 break-all text-muted-foreground">
+                                {link.url}
+                              </p>
+                            </div>
+                          </CommandItem>
+                        );
+                      })}
+                    </CommandGroup>
+                  </ScrollAreaViewport>
+                </ScrollArea>
               </Command>
             </div>
           </div>
