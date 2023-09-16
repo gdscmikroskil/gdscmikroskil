@@ -72,9 +72,9 @@ export function QRCodeGenerator({ links }: QRCodeGeneratorProps) {
             <Icons.ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="w-screen border-none p-0">
+        <PopoverContent className="w-screen border-none p-0 shadow-none">
           <div className="mx-auto max-w-xl px-3">
-            <div className="rounded-md border">
+            <div className="rounded-md border shadow-md">
               <Command filter={handleFilter}>
                 <CommandInput placeholder="Search link..." />
                 <CommandEmpty>No link found.</CommandEmpty>
